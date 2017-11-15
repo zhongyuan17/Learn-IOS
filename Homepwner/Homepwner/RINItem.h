@@ -8,16 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MyItem : NSObject
+@interface RINItem : NSObject
 
 @property (nonatomic, copy) NSString *itemName;
 @property (nonatomic, copy) NSString *serialNumber;
 @property (nonatomic) int valueInDollars;
 @property (nonatomic, readonly, strong) NSDate *dateCreated;
-@property (nonatomic, strong) MyItem *containedItem;
-@property (nonatomic, weak) MyItem *container;
-
-- (void) setContainedItem:(MyItem *)containedItem;
+@property (nonatomic, copy) NSString *itemKey;
 
 - (instancetype) initWithItemName:(NSString *)name
                    valueInDollars:(int)value
@@ -29,10 +26,3 @@
 
 @end
 
-@interface MyContainer : MyItem
-{
-    NSMutableArray *_subitems;
-}
-
-- (void)addSubItem:(MyItem *)subitem;
-@end

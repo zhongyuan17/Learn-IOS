@@ -55,12 +55,12 @@
     self.circleColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [super touchesBegan:touches withEvent:event];
-    NSLog(@"on touches began");
-    [self randomChangeColor];
-    [self setNeedsDisplay];
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    [super touchesBegan:touches withEvent:event];
+//    NSLog(@"on touches began");
+//    [self randomChangeColor];
+//    [self setNeedsDisplay];
+//}
 
 - (NSString *)description
 {

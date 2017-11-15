@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ZhongYuan. All rights reserved.
 //
 
-#import "MyItem.h"
+#import "RINItem.h"
 
-@implementation MyItem
+@implementation RINItem
 
 - (NSString *)description
 {
@@ -26,6 +26,9 @@
         _serialNumber = sNumber;
         _valueInDollars = value;
         _dateCreated = [[NSDate alloc] init];
+        
+        NSUUID *uuid = [[NSUUID alloc] init];
+        _itemKey = [uuid UUIDString];
     }
     return self;
 }
@@ -38,12 +41,6 @@
 - (instancetype) init
 {
     return [self initWithItemName:@"Item"];
-}
-
-- (void) setContainedItem:(MyItem *)containedItem
-{
-    _containedItem = containedItem;
-    self.containedItem.container = self;
 }
 
 - (void)dealloc
@@ -68,32 +65,8 @@
                                     'A' + arc4random() % 26,
                                     '0' + arc4random() % 10];
     
-    MyItem *item = [[self alloc] initWithItemName:randomName valueInDollars:randomValue serialNumber:randomSerailNumber];
+    RINItem *item = [[self alloc] initWithItemName:randomName valueInDollars:randomValue serialNumber:randomSerailNumber];
     return item;
-}
-
-@end
-
-@implementation MyContainer
-
-- (void)addSubItem:(MyItem *)subitem
-{
-    if (!_subitems) {
-        _subitems = [[NSMutableArray alloc] init];
-    }
-    [_subitems addObject:subitem];
-}
-
-- (NSString *)description
-{
-    int value = self.valueInDollars;
-    NSString *subitemDes = [[NSString alloc] init];
-    for (MyItem *subitem in _subitems) {
-        value += subitem.valueInDollars;
-        subitemDes = [NSString stringWithFormat:@"%@, %@", subitemDes, subitem];
-    }
-    NSString *des = [NSString stringWithFormat:@"%@: Worth %d", self.itemName, value];
-    return [NSString stringWithFormat:@"%@ %@", des, subitemDes];
 }
 
 @end
